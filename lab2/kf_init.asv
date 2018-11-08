@@ -76,8 +76,8 @@ function kf = kf_init(mu, Sigma)
              0 0 0 1 ];
     kf.H = [ 1 0 0 0 ;
              0 1 0 0 ];
-    kf.Sigma_x = diag([ noise_var_x_pos noise_var_x_pos noise_var_x_vel noise_var_x_vel ]);
-    kf.Sigma_z = diag([ noise_var_z noise_var_z ]);
+    kf.Sigma_x =
+    kf.Sigma_x =
 
     % finally, check that everything has correct dimensions
     Dz = size(kf.H, 1); % dimensionality of observations
