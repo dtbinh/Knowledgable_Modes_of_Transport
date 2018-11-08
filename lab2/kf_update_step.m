@@ -15,7 +15,11 @@ Sigma = kf.Sigma_upds(:,:,end);
 % ----------------------
 %  YOUR CODE GOES HERE! 
 % ----------------------
-
+e = z - kf.H*mu;
+S = kf.H*Sigma*kf.H' + kf.Sigma_z;
+K = Sigma*kf.H'/S;
+mu_upd    = mu + K*e;
+Sigma_upd = (eye(size(K*kf.H)) - K*kf.H)*Sigma;
 
 % ok, store the result
 kf.mu_upds(:,end) = mu_upd;
