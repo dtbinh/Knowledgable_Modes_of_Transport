@@ -61,7 +61,7 @@ kf = kf_predict_step(kf); % t = 5;
 fprintf('the Kalman Filter processed %d time steps (t = %d to t = %d)\n', numel(kf.ts), min(kf.ts), max(kf.ts));
 
 % animate the result
-dims = [1 2]; % <-- ** Exercise 1.3 **: the dimensions of the state vector to show
+dims = [1 3]; % <-- ** Exercise 1.3 **: the dimensions of the state vector to show
 animate_kf_uncertainty_regions(kf, dims)
 
 %% Exercise 1.4: Pedestrian moving in front of a vehicle
