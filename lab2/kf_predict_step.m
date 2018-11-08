@@ -11,7 +11,8 @@ t = kf.ts(end);
 % ----------------------
 %  YOUR CODE GOES HERE! 
 % ----------------------
-
+mu = kf.F*mu_prev;
+Sigma = kf.F*Sigma_prev*kf.F' + kf.Sigma_x;
 
 % after the predicted mu and Sigma have been computed,
 %   store them in the struct as the latest predicted state
