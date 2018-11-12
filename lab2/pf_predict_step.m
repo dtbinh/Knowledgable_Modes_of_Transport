@@ -27,7 +27,9 @@ function particles = pf_predict_step(particles, control_input, dt)
     % ----------------------
     %  YOUR CODE GOES HERE! 
     % ----------------------
-
+    particles(1,:) = particles(1,:) + velocity*dt.*sin(particles(3,:));
+    particles(2,:) = particles(2,:) + velocity*dt.*cos(particles(3,:));
+    particles(3,:) = particles(3,:) + steering_angle*dt;
 
     %% add noise
     % Second, add here some random noise to each particle.
@@ -45,7 +47,8 @@ function particles = pf_predict_step(particles, control_input, dt)
     % ----------------------
     %  YOUR CODE GOES HERE! 
     % ----------------------
-
+    mu = [ 0 0 0 ];
+    particles = particles + mvnrnd(mu,Sigma_x,N)'; % Need to transpose since mvnrnd returns samples on rows
 
     % Since the dimension of each particle, i.e. orientation theta,
     % is on the circular domain, let's ensure all values remain on the
