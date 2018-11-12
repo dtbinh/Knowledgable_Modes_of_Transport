@@ -19,8 +19,10 @@ function new_particles = pf_update_step(particles, meas, map, sensor)
     % ----------------------
     %  YOUR CODE GOES HERE! 
     % ----------------------
-
-
+    for j = 1:N
+        log_weights(1,j) = map_measurement_loglik(particles(:,j), map, meas, sensor);
+    end
+        
     %% resample particles 
 
     % We construct construct normalized probabilities from the list of
@@ -58,7 +60,8 @@ function new_particles = pf_update_step(particles, meas, map, sensor)
     % ----------------------
     %  YOUR CODE GOES HERE! 
     % ----------------------
-
+    idxs = randselect(probs,N);
+    new_particles = particles(:,idxs);
 
     % new_particles should by a 3 x N matrix
     assert(all(size(new_particles) == [3, N])); 

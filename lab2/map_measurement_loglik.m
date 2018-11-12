@@ -29,4 +29,7 @@ log_weight = NaN; % <-- dummy value (change this!)
 % ----------------------
 %  YOUR CODE GOES HERE! 
 % ----------------------
-
+log_weight = 0;
+for r = 1:size(z,1)
+    log_weight = log_weight - (z(r) - z_hat(r))^2 / 2*sigma2;
+end

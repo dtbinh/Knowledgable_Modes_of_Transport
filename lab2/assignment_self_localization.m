@@ -108,7 +108,7 @@ measurement = measurements(1);
 % a set of 'hypotheses' about the true state.
 % Here we take a look at 7 hypotheses, without considering any vehicle
 % dynamics.
-test_location_id = 1; % <-- *CHANGE THIS*, try out locations 1 to 7
+test_location_id = 6; % <-- *CHANGE THIS*, try out locations 1 to 7
 
 test_particles = [ ...
         [0; 10; 2*pi * 0/8], ... % first test location
