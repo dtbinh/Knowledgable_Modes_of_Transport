@@ -27,7 +27,7 @@ function assignment = associate_measurments_to_tracks(meas_pos, kfs, is_active)
     
     % evaluate log likelihood of all observations per tracker
     for r = valid_rs % iterate over valid measurements ...
-        for j = active_js; % iterate over active KFs ...
+        for j = active_js % iterate over active KFs ...
             % get 2D location of r-th measurement
             meas_r = meas_pos(:,r);
             
@@ -43,7 +43,12 @@ function assignment = associate_measurments_to_tracks(meas_pos, kfs, is_active)
             % ----------------------
             %  YOUR CODE GOES HERE! 
             % ----------------------
-
+            [is_ok, score] = test_gating_score(kfs(j), meas_r);
+            if is_ok && score < best_scores(r)
+                disp("ok");
+                best_scores(r) = score;
+                assignment(r) = j;
+            end
         end
     end
 end
