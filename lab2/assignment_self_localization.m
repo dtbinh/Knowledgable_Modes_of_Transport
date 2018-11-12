@@ -175,11 +175,11 @@ title('expected measurement at particle x_t')
 % For Exercise 2.5, you will need to complete the code in
 %     pf_update_step
 
-N = 100; % num particles % <-- change this
-INITIAL_POSITION_KNOWN = true; % <-- ** Exercise 2.7 **
+N = 200; % num particles % <-- change this
+INITIAL_POSITION_KNOWN = false; % <-- ** Exercise 2.7 **
 
 % compute number of particles to reinitialize each timestep
-frac_reinit = 0; % <-- ** Exercise 2.8 ** set fraction here
+frac_reinit = 0.25; % <-- ** Exercise 2.8 ** set fraction here
 N_reinit = ceil(N * frac_reinit); % number of particles to reinitialize
 
 % setup plot
@@ -214,7 +214,8 @@ for t = 1:T
     % ----------------------
     %  YOUR CODE GOES HERE! 
     % ----------------------
-
+    reinit_particles = pf_init_freespace(N_reinit,map);
+    particles(:,1:N_reinit) = reinit_particles;
 
     % show particles
     delete(findobj('Tag', 'particles_pred'));
