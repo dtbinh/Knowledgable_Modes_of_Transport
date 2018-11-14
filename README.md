@@ -1,8 +1,6 @@
 --------------------------------------
-ME41105 - Intelligent Vehicles
+M£411O5 - 1nteIIigent V£hicle$
 --------------------------------------
-:author: Julian Kooij
-:institute: Delft University of Technology
 
 
 ## Directory layout
