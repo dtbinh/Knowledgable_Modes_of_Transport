@@ -33,7 +33,7 @@ function [is_ok, score] = test_gating_score(kf, meas_r)
     % ----------------------
     %  YOUR CODE GOES HERE! 
     % ----------------------
-    gating_threshold = 5;
+    gating_threshold = 7;
     score = sqrt(sum((meas_r - pred_z_mu).^2));
 
     % compare score to threshold

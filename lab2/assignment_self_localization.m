@@ -108,8 +108,6 @@ measurement = measurements(1);
 % a set of 'hypotheses' about the true state.
 % Here we take a look at 7 hypotheses, without considering any vehicle
 % dynamics.
-test_location_id = 6; % <-- *CHANGE THIS*, try out locations 1 to 7
-
 test_particles = [ ...
         [0; 10; 2*pi * 0/8], ... % first test location
         [0; 10; 2*pi * 2/8], ... % second test location
@@ -119,22 +117,27 @@ test_particles = [ ...
         [-12; 22; 2*pi * 12/8], ...
         [-10; 22; 2*pi * 13/8] ...
 ];
-particle = test_particles(:, test_location_id);
 
-% The following lines create a hypothetical 'ideal' or 'expected' 
-%   measurement for the selected particle.
-%   This represents what we *expect* to measure if the vehicle is actually
-%   at the particle position.
-particle_sensor = copy_sensor(sensor, particle(1), particle(2), particle(3), 0); % copy our sensor, but put it on the particle's state
-particle_meas = particle_sensor.new_meas(); % create a new virtual measurement for the sensor
-particle_meas = particle_sensor.observe_point(particle_meas, map.obstacles, 1); % measure the obstacles in the map
+particle_results = zeros(7,2);
+for test_location_id = 1:7 % <-- *CHANGE THIS*, try out locations 1 to 7
+    particle = test_particles(:, test_location_id);
 
-log_weight = map_measurement_loglik(particle, map, measurement, sensor);
-if isnan(log_weight)
-    warning('You did not implement map_measurement_loglik correctly yet!');
+    % The following lines create a hypothetical 'ideal' or 'expected' 
+    %   measurement for the selected particle.
+    %   This represents what we *expect* to measure if the vehicle is actually
+    %   at the particle position.
+    particle_sensor = copy_sensor(sensor, particle(1), particle(2), particle(3), 0); % copy our sensor, but put it on the particle's state
+    particle_meas = particle_sensor.new_meas(); % create a new virtual measurement for the sensor
+    particle_meas = particle_sensor.observe_point(particle_meas, map.obstacles, 1); % measure the obstacles in the map
+
+    log_weight = map_measurement_loglik(particle, map, measurement, sensor);
+    if isnan(log_weight)
+        warning('You did not implement map_measurement_loglik correctly yet!');
+    end
+    fprintf('expected measurement at particle x_t\nlog weight = %.3f, i.e. weight = %.3f\n', log_weight, exp(log_weight));
+    particle_results(test_location_id,1) = log_weight;
+    particle_results(test_location_id,2) = exp(log_weight);
 end
-fprintf('expected measurement at particle x_t\nlog weight = %.3f, i.e. weight = %.3f\n', log_weight, exp(log_weight));
-
 % -- visualize --
 % setup plot
 sfigure(1);
@@ -175,11 +178,11 @@ title('expected measurement at particle x_t')
 % For Exercise 2.5, you will need to complete the code in
 %     pf_update_step
 
-N = 200; % num particles % <-- change this
+N = 100; % num particles % <-- change this
 INITIAL_POSITION_KNOWN = false; % <-- ** Exercise 2.7 **
 
 % compute number of particles to reinitialize each timestep
-frac_reinit = 0.25; % <-- ** Exercise 2.8 ** set fraction here
+frac_reinit = 0.5; % <-- ** Exercise 2.8 ** set fraction here
 N_reinit = ceil(N * frac_reinit); % number of particles to reinitialize
 
 % setup plot

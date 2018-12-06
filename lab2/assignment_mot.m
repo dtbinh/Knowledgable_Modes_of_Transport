@@ -225,7 +225,7 @@ end
 % now we also siumulate that the sensor can have outlier measurements
 %   (i.e. false detections) that have nothing to do with the moving target.
 
-jk_srand(42); % random seed
+jk_srand(randi(100,1)); % random seed
 
 % generate new measurements with outliers
 clear measurements_outliers
@@ -416,11 +416,14 @@ end
 % deactivate a KF tracker if it has had NO observations 
 %  in so many time steps:
 track_termination_threshold = 8;
+
+% Student addition: Preprocess data
+measurements_multi_preproc = preprocess_measurements(measurements_multi);
     
 % run multi-object tracker, on return set of KFs for all tracks
 kfs = run_multi_object_tracker( ...
     sensor, ...
-    measurements_multi, ...
+    measurements_multi_preproc, ...
     track_termination_threshold ...
 );
 fprintf('created %d tracks ...\n', numel(kfs));

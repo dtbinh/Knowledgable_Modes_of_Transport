@@ -1,6 +1,6 @@
 function measurements = preprocess_measurements(measurements)
 
-filter_order = 1; % <-- ** Exercise 1.10 ** order of the median filter
+filter_order = 3; % <-- ** Exercise 1.10 ** order of the median filter
 
 T = numel(measurements);
 
