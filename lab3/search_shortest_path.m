@@ -95,7 +95,12 @@ function [path, info] = search_shortest_path(V, start, goal, reachable, cost_fun
     % ----------------------
     %  YOUR CODE GOES HERE! 
     % ----------------------
-
+    while v ~= 0
+        v = backpoint(v);
+        if v ~= 0   % Dont add 0 as the start, returns error in subscript
+            path = [ v path ];
+        end
+    end
 
     % ok, done
     % optional: return info
