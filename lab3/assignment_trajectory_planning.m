@@ -83,9 +83,9 @@ drawnow
 
 % set initial parameter estimates (will later be redefined through optimization)
 k0 = init_state.kappa;
-k1 = 1/2; % <-- change this
-k2 = -1/4; % <-- change this
-path_length = 20; % <-- change this
+k1 = 1/58; % <-- Changed from: 1/2
+k2 = 1/60; % <-- Changed from: -1/4
+path_length = 40; % <-- Changed from: 20
 
 % simultation time steps in seconds, i.e. 10 Hz
 dt = 1e-1;
@@ -114,7 +114,7 @@ motion_model = @(state, u_acc, u_steer, dt) struct( ...
 
 % Change this once you understand how the k parameters affect the vehicle
 % path.
-USE_CURV_PARAM_STATE_PREDICT = false;
+USE_CURV_PARAM_STATE_PREDICT = true;
 
 if ~USE_CURV_PARAM_STATE_PREDICT
     % Perform Euler integration

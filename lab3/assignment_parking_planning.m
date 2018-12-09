@@ -116,6 +116,9 @@ fprintf('planning the path ...\n');
 vertex_dist = @(idx1, idx2) ...
     sqrt( sum(bsxfun(@minus, states(:,idx1), states(:,idx2)).^2, 1) )';
 
+% STUDENT CODE: Remove unreachable cells
+reachable = remove_unreachable_cells(reachable,state_occupancy);
+
 % perform graph search for shortest path
 [path, info] = search_shortest_path_astar(V, start, goal, reachable, vertex_dist, vertex_dist);
 

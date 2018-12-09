@@ -31,3 +31,18 @@ V = numel(reachable);
 % ----------------------
 %  YOUR CODE GOES HERE! 
 % ----------------------
+for idx = 1:V
+    % Get neighbor indexes (nidxs) of current index (idx)
+    nidxs = reachable{idx};
+    % Initialize list of unoccupied neighbors, which will replace original
+    unoccupied_nidxs = [];
+    % Go through neighbor indexes and check occupancy
+    for nidx = 1:size(nidxs,2)
+        if state_occupancy(nidxs(nidx)) == 0
+            % If neighbor is unoccupied, add it to the list
+            unoccupied_nidxs = [ unoccupied_nidxs nidxs(nidx) ];
+        end
+    end
+    % Replace original indexes with non-occupied ones
+    reachable{idx} = unoccupied_nidxs;
+end

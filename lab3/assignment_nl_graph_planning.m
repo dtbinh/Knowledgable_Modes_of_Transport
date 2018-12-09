@@ -39,15 +39,15 @@ grid on
 legend_by_displayname
 
 %% Select the path planning problem
-planning_problem_idx = 1; % <-- change this
+planning_problem_idx = 3; % <-- change this
 
 switch planning_problem_idx
-    case 1, start = 1; goal = 100400; % shortest path: 42.912 km
-    case 2, start = 1; goal = 1400; % shortest path: 157.681 km
-    case 3, start = 214e4; goal = 1600; % shortest path: ?
-    case 4, start = 32e4; goal = 1600; 
-    case 5, start = 205e4; goal = 4e3;
-    case 6, start = 4e3; goal = 205e4;
+    case 1, start = 1; goal = 100400;   % shortest path:  42.912 km
+    case 2, start = 1; goal = 1400;     % shortest path: 157.681 km
+    case 3, start = 214e4; goal = 1600; % shortest path: 153.287 km
+    case 4, start = 32e4; goal = 1600;  % shortest path: 169.112 km
+    case 5, start = 205e4; goal = 4e3;  % shortest path: 369.078 km
+    case 6, start = 4e3; goal = 205e4;  % shortest path: 369.078 km
 end
 
 % plot the goal and target position in the figure

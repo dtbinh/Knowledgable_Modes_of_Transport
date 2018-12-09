@@ -34,7 +34,14 @@ function err = C(params)
     % ----------------------
     %  YOUR CODE GOES HERE! 
     % ----------------------
-
+    pred_states = curv_param_state_predict(config,params);
+    pred_final_state = pred_states(numel(pred_states));
+    err = [pred_final_state.x - goal_state.x ;
+           pred_final_state.y - goal_state.y ;
+           pred_final_state.theta - goal_state.theta ;
+           pred_final_state.kappa - goal_state.kappa ;
+           pred_final_state.v - goal_state.v ;
+           pred_final_state.a - goal_state.a ].^2;
     
 end
 

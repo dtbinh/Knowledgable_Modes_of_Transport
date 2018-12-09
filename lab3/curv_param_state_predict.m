@@ -15,5 +15,6 @@ function states = curv_param_state_predict(config, params)
     % ----------------------
     %  YOUR CODE GOES HERE! 
     % ----------------------
-
+    steering_profile = make_steering_profile(k0,k1,k2);
+    states = euler_integrate_motion(init_state,dt,path_length,motion_model,steering_profile);
 end

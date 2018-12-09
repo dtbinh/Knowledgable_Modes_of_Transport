@@ -29,7 +29,7 @@ function [path, info] = search_shortest_path_astar(V, start, goal, reachable, co
     % ----------------------
     %  YOUR CODE GOES HERE! 
     % ----------------------
-
+    heurs(start) = heur_func(start, goal);
     
     scores = costs + heurs;
 
@@ -68,7 +68,8 @@ function [path, info] = search_shortest_path_astar(V, start, goal, reachable, co
         % ----------------------
         %  YOUR CODE GOES HERE! 
         % ----------------------
-
+        nheurs = heur_func(nidxs, goal);    % Find heuristic from neighbors to goal
+        nscores = ncosts + nheurs;          % Record neighbor scores as cost to reach + cost from neighbor to goal
         
         % only keep neighbors for which we can improve their distance
         mask = ncosts' < costs(nidxs);
@@ -116,7 +117,12 @@ function [path, info] = search_shortest_path_astar(V, start, goal, reachable, co
     % ----------------------
     %  YOUR CODE GOES HERE! 
     % ----------------------
-
+    while v ~= 0
+        v = backpoint(v);
+        if v ~= 0   % Dont add 0 as the start, returns error in subscript
+            path = [ v path ];
+        end
+    end
 
     % ok, done
     % optional: return info

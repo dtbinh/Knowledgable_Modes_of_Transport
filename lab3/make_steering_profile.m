@@ -20,7 +20,7 @@ function steering_profile = make_steering_profile(k0, k1, k2)
 
     % This dummy function shows a dummy example of the steering profile.
     % It just returns same random output independent of the input values
-    steering_profile = @(sfrac) rand(size(sfrac))-.5; % dummy function
+    %steering_profile = @(sfrac) rand(size(sfrac))-.5; % dummy function
     
     % Tip: use Matlab's builtin 'spline' function to define an anomous
     % function (similar to the dummy function above)
@@ -29,7 +29,7 @@ function steering_profile = make_steering_profile(k0, k1, k2)
     % ----------------------
     %  YOUR CODE GOES HERE! 
     % ----------------------
-
+    steering_profile = @(sfrac) spline([0 0.5 1],[k0 k1 k2],sfrac);
     
     % Check that the function returns a steering angle for
     debug_test_equal(steering_profile, 0, k0);

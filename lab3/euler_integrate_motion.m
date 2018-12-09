@@ -37,7 +37,7 @@ function states = euler_integrate_motion(init_state, dt, path_length, motion_mod
         % ----------------------
         %  YOUR CODE GOES HERE! 
         % ----------------------
-
+        u_steer = steering_profile(traveled_dists(step)/path_length);
 
         % Now we simply update the vehicle state using the given
         %   motion_model, the control inputs u_acc and u_steer,
@@ -45,7 +45,8 @@ function states = euler_integrate_motion(init_state, dt, path_length, motion_mod
         % ----------------------
         %  YOUR CODE GOES HERE! 
         % ----------------------
-
+        % Variable 'state' is initialized as init above
+        state = motion_model(state,u_acc,u_steer,dt);
         
         % append result
         states = [states, state];
