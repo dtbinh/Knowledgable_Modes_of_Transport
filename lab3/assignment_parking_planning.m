@@ -83,7 +83,7 @@ legend_by_displayname('Location', 'NorthWest')
 % at the same origin, but define different goal positions in the
 % environment.
 
-planning_problem_idx = 1; % <-- change this
+planning_problem_idx = 2; % <-- change this
 
 % define the vehicle start position in the created discrete space
 start = cspace.map_nd_to_1d([7 1 1 1]');
@@ -141,6 +141,10 @@ for t = 1:numel(path)
     delete(findobj('Tag', 'vehicle'))
     plot_vehicle_state(vehstruct_from_idx(idx));
     pause(.1)
+    
+    disp('Time');
+    disp(t);
+    disp(states(:,path(t)));
 end
 
 %% -- Configuration space 3D plot --

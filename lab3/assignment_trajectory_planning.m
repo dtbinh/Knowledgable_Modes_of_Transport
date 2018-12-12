@@ -248,7 +248,7 @@ legend off
 %     compute_trajectory_cost
 
 % select scenario 1 to 6
-scenario_idx = 1; % <-- ** change this **
+scenario_idx = 6; % <-- ** change this **
 
 obstacle_states = trajplanning_obstacle_scenario(road, scenario_idx);
 

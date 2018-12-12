@@ -16,7 +16,16 @@ function [total_cost, costs_per_timestep] = compute_trajectory_cost(obstacle_sta
         % ----------------------
         %  YOUR CODE GOES HERE! 
         % ----------------------
-
+        % Combine both threshold and exponential cost in one
+        veh_state = states(step);
+        obs_state = obstacle_states(step);
+        distance_threshold = 10;
+        distance = sqrt((veh_state.x - obs_state.x)^2 + (veh_state.y - obs_state.y)^2);
+        if distance <= distance_threshold
+            costs_per_timestep(step) = 1/distance^2;% + exp(-distance);
+        else
+            costs_per_timestep(step) = 0;
+        end
     end
 
     % Finally, we compute a single cost from the cost per timestep,
@@ -28,7 +37,10 @@ function [total_cost, costs_per_timestep] = compute_trajectory_cost(obstacle_sta
     % ----------------------
     %  YOUR CODE GOES HERE! 
     % ----------------------
-
+    alpha = 750.0;
+    distance_cost = mean(costs_per_timestep);
+    lateral_cost = abs(lat_offset);
+    total_cost = alpha*distance_cost + lateral_cost;
     
     assert(numel(costs_per_timestep) == nsteps)
     assert(numel(total_cost) == 1)
